@@ -399,7 +399,7 @@ class Elementor_Logo_Ultimate_Widget extends \Elementor\Widget_Base {
 				'id'     	=> 'header_title_typography',
 				'type'		=> Group_Control_Typography::get_type(),
 				'selector' 	=> '{{WRAPPER}} .wpwax-lsu-title',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				//'scheme' => Typography::TYPOGRAPHY_3,
 			),
 			array(
 				'type'    => Controls_Manager::SELECT,
@@ -484,7 +484,7 @@ class Elementor_Logo_Ultimate_Widget extends \Elementor\Widget_Base {
 				'id'     	=> 'header_hover_title_typography',
 				'type'		=> Group_Control_Typography::get_type(),
 				'selector' 	=> '{{WRAPPER}} .wpwax-lsu-title:hover',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				//'scheme' => Typography::TYPOGRAPHY_3,
 			),
 			array(
 				'type'    => Controls_Manager::SELECT,
@@ -1110,7 +1110,7 @@ class Elementor_Logo_Ultimate_Widget extends \Elementor\Widget_Base {
 				'id'     	=> 'load_typography',
 				'type'		=> Group_Control_Typography::get_type(),
 				'selector' 	=> '{{WRAPPER}} .wpwax-loadmore-btn .lsu_load_more',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				//'scheme' => Typography::TYPOGRAPHY_3,
 			),
 			array(
 				'type'    => Controls_Manager::SELECT,
@@ -1227,7 +1227,7 @@ class Elementor_Logo_Ultimate_Widget extends \Elementor\Widget_Base {
 				'id'     	=> 'load_hover_typography',
 				'type'		=> Group_Control_Typography::get_type(),
 				'selector' 	=> '{{WRAPPER}} .wpwax-loadmore-btn .lsu_load_more:hover',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				//'scheme' => Typography::TYPOGRAPHY_3,
 			),
 			array(
 				'type'    => Controls_Manager::SELECT,
