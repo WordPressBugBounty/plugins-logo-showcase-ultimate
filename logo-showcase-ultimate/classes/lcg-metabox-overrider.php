@@ -15,10 +15,7 @@ class Lcg_Featured_Img_Customizer {
 
 	function __construct ( $args = array() ) {
 
-		$this->post_type     = ! empty( $args['post_type'] ) ? $args['post_type'] : '';
-		$this->metabox_title = ! empty( $args['metabox_title'] ) ? $args['metabox_title'] : __( 'Featured Image', 'logo-showcase-ultimate' );
-		$this->set_text      = ! empty( $args['set_text'] ) ? $args['set_text'] : __( 'Set Featured Image', 'logo-showcase-ultimate' );
-		$this->remove_text   = ! empty( $args['remove_text'] ) ? $args['remove_text'] : __( 'Remove Featured Image', 'logo-showcase-ultimate' );
+		$this->post_type     = ! empty( $args['post_type'] ) ? $args['post_type'] : 'lcg_mainpost';
 
 		if ( ! empty( $this->post_type ) ) {
 			add_action( 'add_meta_boxes', array( $this, 'change_featured_image_metabox_title_for_lcg' ) );
@@ -39,7 +36,7 @@ class Lcg_Featured_Img_Customizer {
 			remove_meta_box( 'postimagediv', $this->post_type, 'side' );
 
 			//add our customized metabox
-			add_meta_box( 'postimagediv', $this->metabox_title, 'post_thumbnail_meta_box', $this->post_type, 'side', 'low' );
+			add_meta_box( 'postimagediv', __( 'Featured Image', 'logo-showcase-ultimate' ), 'post_thumbnail_meta_box', $this->post_type, 'side', 'low' );
 		}
 	}
 
@@ -88,8 +85,8 @@ class Lcg_Featured_Img_Customizer {
 	 */
 	function change_featured_image_metabox_content_for_lcg( $content ) {
 		if ( $this->get_featured_image_metabox_post_type_for_lcg() === $this->post_type ) {
-			$content = str_replace( 'Set featured image' , $this->set_text, $content );
-			$content = str_replace( 'Remove featured image' , $this->remove_text, $content );
+			$content = str_replace( 'Set featured image' , __( 'Set Featured Image', 'logo-showcase-ultimate' ), $content );
+			$content = str_replace( 'Remove featured image' , __( 'Remove Featured Image', 'logo-showcase-ultimate' ), $content );
 		}
 
 		return $content;
@@ -109,8 +106,8 @@ class Lcg_Featured_Img_Customizer {
 		if ( ! empty( $post ) ) {
 
 			if ( $post->post_type === $this->post_type ) {
-				$strings['setFeaturedImage']      = $this->set_text;
-				$strings['setFeaturedImageTitle'] = $this->set_text;
+				$strings['setFeaturedImage']      = __( 'Set Featured Image', 'logo-showcase-ultimate' );
+				$strings['setFeaturedImageTitle'] = __( 'Set Featured Image', 'logo-showcase-ultimate' );
 			}
 
 		}

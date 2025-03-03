@@ -3,7 +3,7 @@
 Plugin Name: Logo Showcase Ultimate
 Plugin URI: https://wpwax.com/product/logo-showcase-ultimate-pro/
 Description: This plugin allows you to easily create Logo Showcase to display logos of your clients, partners, sponsors and affiliates etc in a beautiful carousel, slider and grid.
-Version:     1.4.3
+Version:     1.4.4
 Author:      wpWax
 Author URI:  https://wpwax.com
 License:     GPL2
@@ -57,7 +57,7 @@ if ( ! class_exists( 'Lcg_Main_Class' ) ) {
                 self::$instance = new Lcg_Main_Class;
                 //if woocmmerce plugin not activate
                 self::$instance->define_lcg_adl_constants();
-                add_action( 'plugin_loaded', array( self::$instance, 'lcg_load_textdomain' ) );
+                add_action( 'init', array( self::$instance, 'lcg_load_textdomain' ) );
                 add_action( 'admin_enqueue_scripts', array( self::$instance, 'lcg_admin_enqueue_scripts' ) );
                 add_action( 'template_redirect', array( self::$instance, 'lcg_enqueue_style_front' ) );
                 add_action( 'admin_menu', array( self::$instance, 'lcg_hook_usage_and_support_submenu' ) );
@@ -79,12 +79,7 @@ if ( ! class_exists( 'Lcg_Main_Class' ) ) {
 
                 self::$instance->lcg_include_required_files();
                 self::$instance->custom_post                = new Lcg_Custom_Post();
-                self::$instance->featured_img_customizer    = new Lcg_Featured_Img_Customizer(array(
-                    'post_type'     => 'lcg_mainpost',
-                    'metabox_title' => esc_html__( 'Logo', 'logo-showcase-ultimate' ),
-                    'set_text'      => esc_html__( 'Set logo', 'logo-showcase-ultimate' ),
-                    'remove_text'   => esc_html__( 'Remove logo', 'logo-showcase-ultimate' ),
-                ));
+                self::$instance->featured_img_customizer    = new Lcg_Featured_Img_Customizer();
                 self::$instance->metabox                    = new Lcg_Metabox();
                 self::$instance->shortcode                  = new Lcg_shortcode();
             }
@@ -199,8 +194,14 @@ if ( ! class_exists( 'Lcg_Main_Class' ) ) {
         }
 
         public function lcg_load_textdomain() {
+            // Determine the current locale
+            $locale = determine_locale();
+            // Allow filters to modify the locale
+            $locale = apply_filters( 'plugin_locale', $locale, 'logo-showcase-ultimate' );
+            load_textdomain( 'logo-showcase-ultimate', WP_LANG_DIR . '/plugins/logo-showcase-ultimate-' . $locale . '.mo' );
+            load_plugin_textdomain( 'logo-showcase-ultimate', false, plugin_basename(dirname(__FILE__)) . '/languages/' );
 
-            load_plugin_textdomain( LCG_TEXTDOMAIN, false, plugin_basename(dirname(__FILE__)) . '/languages/' );
+            //load_plugin_textdomain( LCG_TEXTDOMAIN, false, plugin_basename(dirname(__FILE__)) . '/languages/' );
 
         }
 
