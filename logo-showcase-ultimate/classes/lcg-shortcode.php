@@ -232,7 +232,15 @@ class Lcg_shortcode {
                     ?>
 
                     <?php
-
+                    $allowed_themes  			= array( 
+                                                        'carousel-theme-1', 
+                                                        'carousel-theme-2', 
+                                                        'carousel-theme-3', 
+                                                        'grid-theme-1', 
+                                                        'grid-theme-2', 
+                                                        'grid-theme-3' 
+                                                    );
+                    $theme 						= in_array( $theme, $allowed_themes, true ) ? $theme : 'carousel-theme-1';
                     include LCG_PLUGIN_DIR . 'template/theme/' . $theme .'.php'; 
 
                     endwhile;
